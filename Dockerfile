@@ -9,6 +9,7 @@ RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointMa
 # Install working tools 
 RUN choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'
 RUN choco install -y mingw
+RUN choco install -y conan
 
 COPY profile C:\Users\ContainerAdministrator\.conan\profiles\default
 
