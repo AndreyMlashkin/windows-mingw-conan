@@ -1,13 +1,14 @@
 [settings]
-os=Windows
 os_build=Windows
+os=Windows
 arch=x86_64
 arch_build=x86_64
-build_type=Debug
-compiler=clang
-compiler.version=12
-
+compiler=gcc
+compiler.version=8.1
+compiler.libcxx=libstdc++11
+compiler.threads=posix
+build_type=Release
 [env]
-CC=clang-cl
-CXX=clang-cl
-CONAN_CMAKE_GENERATOR=Ninja
+CC="C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\gcc"
+CXX="C:\ProgramData\chocolatey\lib\mingw\tools\install\mingw64\bin\g++"
+CMAKE_MAKE_PROGRAM="C:\Program Files\CMake\bin\cmake"

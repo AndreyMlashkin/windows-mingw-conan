@@ -6,12 +6,13 @@ SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPref
 # Install chocolatey
 RUN Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-RUN choco install llvm  -y
-RUN choco install Ninja -y
-RUN choco install cmake -y --installargs 'ADD_CMAKE_TO_PATH=System'
-RUN choco install conan -y
+# Install working tools 
+RUN choco install -y cmake --installargs 'ADD_CMAKE_TO_PATH=System'
+RUN choco install -y mingw
 
-ADD profile C:\Users\ContainerAdministrator\.conan\profiles\default
+COPY profile C:\Users\ContainerAdministrator\.conan\profiles\default
 
-# test code, should be deleted later
-RUN conan install zlib/1.2.11@ --build "*"
+# TEST, remove
+RUN conan install vulkan-loader/1.2.182@ --build missing
+
+ENTRYPOINT [ "powershell.exe"]
